@@ -1,5 +1,6 @@
-import 'bootstrap';
+import 'bulma';
 import {Aurelia} from 'aurelia-framework';
+import { initialState } from './state'
 import environment from './environment';
 import {PLATFORM} from 'aurelia-pal';
 
@@ -13,6 +14,7 @@ export function configure(aurelia: Aurelia) {
   if (environment.testing) {
     aurelia.use.plugin(PLATFORM.moduleName('aurelia-testing'));
   }
+  aurelia.use.plugin(PLATFORM.moduleName('aurelia-store'), { initialState });  // <----- REGISTER THE PLUGIN
 
   //Uncomment the line below to enable animation.
   // aurelia.use.plugin(PLATFORM.moduleName('aurelia-animator-css'));

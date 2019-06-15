@@ -176,7 +176,7 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
         use: cssRules
       },
       {
-        test: /\.scss$/,
+        test: /\.s[ac]ss$/,
         use: extractCss ? [{
           loader: MiniCssExtractPlugin.loader
         }, ...cssRules, ...sassRules
@@ -184,7 +184,7 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
         issuer: /\.[tj]s$/i
       },
       {
-        test: /\.scss$/,
+        test: /\.s[ac]ss$/,
         use: ['css-loader', 'sass-loader'],
         issuer: /\.html?$/i
       },
