@@ -7,6 +7,7 @@ import { Subscription } from "aurelia-event-aggregator";
 
 export class App {
   public router: Router;
+  
   public state: State;
   private subscription: Subscription;
 
