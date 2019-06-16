@@ -1,6 +1,20 @@
 
+export interface User {
+  cell: string,
+  dob: object,
+  email: string,
+  gender: string,
+  id: object,
+  location: object,
+  phone: string,
+  login: object,
+  nat: string,
+  picture: object,
+  registered: object
+}
+
 export interface State {
-  userData: object[];
+  userData: Array<User>;
   burgerToggle: boolean;
 }
 export const initialState: State = {
