@@ -1,33 +1,31 @@
-import {computedFrom} from 'aurelia-framework';
+import { Store, connectTo } from 'aurelia-store';
+import { State } from '../state'
+import { autoinject } from 'aurelia-framework';
+import { fetchData } from '../actions/fetch';
+import { deleteCard } from '../actions/delete-card';
 
 
+@connectTo()
+@autoinject()
 export class Welcome {
+
   public heading: string = 'Welcome to the Aurelia Navigation App!';
-  public firstName: string = 'John';
-  public lastName: string = 'Doe';
-  private previousValue: string = this.fullName;
-
-  // Getters can't be directly observed, so they must be dirty checked.
-  // However, if you tell Aurelia the dependencies, it no longer needs to dirty check the property.
-  @computedFrom('firstName', 'lastName')
-  get fullName(): string {
-    return `${this.firstName} ${this.lastName}`;
+  
+  public state: State;
+  constructor(private store: Store<State>) {
+    this.store.state.subscribe(state => this.state = state);
+    this.registerActions();
   }
-
-  public submit() {
-    this.previousValue = this.fullName;
-    alert(`Welcome, ${this.fullName}!`);
+  private registerActions() {
+    this.store.registerAction('fetchData', fetchData);
+    this.store.registerAction('deleteCard', deleteCard);
   }
-
-  public canDeactivate(): boolean | undefined {
-    if (this.fullName !== this.previousValue) {
-      return confirm('Are you sure you want to leave?');
-    }
+  public dispatchFetchAction() {
+    this.store.dispatch('fetchData');
   }
-}
+  public dispatchDeleteAction(cardId: string) {
 
-export class UpperValueConverter {
-  public toView(value: string): string {
-    return value && value.toUpperCase();
+    this.store.dispatch('deleteCard', cardId);
+    console.log('fired', cardId);
   }
 }

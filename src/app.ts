@@ -1,37 +1,38 @@
-import { PLATFORM } from "aurelia-pal";
-import { Router, RouterConfiguration } from "aurelia-router";
+import { PLATFORM } from 'aurelia-pal';
+import { Router, RouterConfiguration } from 'aurelia-router';
+import { autoinject, bindable } from 'aurelia-framework';
+import { Store, connectTo } from 'aurelia-store';
+import { State } from './state';
+import { toggleBurger } from './actions/toggle-burger';
 
-import { Store } from "aurelia-store";
-import { State } from "./state";
-import { Subscription } from "aurelia-event-aggregator";
-
+@connectTo()
+@autoinject()
 export class App {
-  public router: Router;
-  
   public state: State;
-  private subscription: Subscription;
-
-  constructor(private store: Store<State>) {}
-
-  bind() {
-    this.subscription = this.store.state.subscribe(
-      state => (this.state = state)
-    );
+  constructor(private store: Store<State>) {
+    this.store.state.subscribe(state => (this.state = state));
+    this.registerActions();
+    console.log(this.state);
+  }
+  private registerActions() {
+    this.store.registerAction('toggleBurger', toggleBurger);
+  }
+  public dispatchToggleAction() {
+    this.store.dispatch('toggleBurger');
+    console.log('Am I firing', this.state)
   }
 
-  unbind() {
-    this.subscription.unsubscribe();
-  }
+  public router: Router;
 
   public configureRouter(config: RouterConfiguration, router: Router) {
-    config.title = "Aurelia";
+    config.title = 'Home';
     config.map([
       {
-        route: ["", "welcome"],
-        name: "welcome",
-        moduleId: PLATFORM.moduleName("./routes/welcome"),
+        route: ['', 'welcome'],
+        name: 'welcome',
+        moduleId: PLATFORM.moduleName('./routes/welcome'),
         nav: true,
-        title: "Welcome"
+        title: 'Welcome'
       }
     ]);
 

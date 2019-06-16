@@ -1,23 +1,52 @@
 <template>
-  <section class="au-animate">
-    <h2>${heading}</h2>
-    <form role="form" submit.delegate="submit()">
-      <div class="form-group">
-        <label for="fn">First Name</label>
-        <input type="text" value.bind="firstName" class="form-control" id="fn" placeholder="first name">
+  <section class="section">
+    <div class="container">
+      <h2 class="subtitle">${heading}</h2>
+      <form role="form" submit.delegate="dispatchFetchAction()">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div>
+        <div class="card" repeat.for="user of state.userData">
+            <header class="card-header">
+                <p class="card-header-title">
+                  ${user.nat + user.phone}
+                </p>
+                  <span class="icon" click.delegate="dispatchDeleteAction(user.phone)">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </span>
+              </header>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-48x48">
+                  <img
+                    src="${user.picture.thumbnail}"
+                    alt="Placeholder image"
+                  />
+                </figure>
+              </div>
+              <div class="media-content">
+                <p class="title is-4">${user.name.first} ${user.name.last}</p>
+                <p class="subtitle is-6">
+                  @${user.login.username} | ${user.email}
+                </p>
+              </div>
+            </div>
+
+            <div class="content">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+              nec iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
+              <a href="#">#responsive</a>
+              <br />
+              <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="form-group"></div>
-        <label for="ln">Last Name</label>
-        <input type="text" value.bind="lastName" class="form-control" id="ln" placeholder="last name">
-      </div>
-      <div class="form-group">
-        <label>Full Name</label>
-        <p class="help-block">${fullName | upper}</p>
-        <!-- <ul>
-          <li repeat.for="user of state.userData">${user}</li>
-        </ul> -->
-      </div>
-      <button type="submit" class="btn btn-default">Submit</button>
-    </form>
+    </div>
   </section>
 </template>

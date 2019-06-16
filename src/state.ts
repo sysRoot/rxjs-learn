@@ -1,6 +1,9 @@
+
 export interface State {
-  userData: any[];
+  userData: object[];
+  burgerToggle: boolean;
 }
 export const initialState: State = {
-  userData: ['wtf', 'lol']
+  userData: [],
+  burgerToggle: false
 }
