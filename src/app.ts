@@ -5,6 +5,7 @@ import { Store, connectTo } from 'aurelia-store';
 import { State } from './state';
 import { toggleBurger } from './actions/toggle-burger';
 import { fetchPokeList, fetchPokeData } from './actions/fetch'
+
 @connectTo()
 @autoinject()
 export class App {
@@ -18,7 +19,7 @@ export class App {
   attached() {
     this.dispatchFetchPokeAction();
   }
-  
+
   private registerActions() {
     this.store.registerAction('toggleBurger', toggleBurger);
     this.store.registerAction('fetchPokeList', fetchPokeList);
@@ -32,10 +33,6 @@ export class App {
   public dispatchFetchPokeAction() {
     this.store.dispatch('fetchPokeList');
     console.log(this.state.pokeList);
-  }
-  public dispatchFetchPokeIndiAction() {
-    this.store.dispatch('fetchPokeData');
-    console.log(this.state.pokeData);
   }
 
   public router: Router;

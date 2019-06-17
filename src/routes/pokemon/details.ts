@@ -2,7 +2,6 @@
 import { Store, connectTo } from 'aurelia-store';
 import { State } from '../../state'
 import { autoinject } from 'aurelia-framework';
-import { fetchPokeList } from '../../actions/fetch';
 import { fetchPokeData } from '../../actions/fetch';
 
 
@@ -14,10 +13,10 @@ export class Pokemon {
   
   public state: State;
   public pokemonId: number;
+  public match: boolean; 
   activate(params, router, navigationInstruction) {
     this.pokemonId = params.id
     this.dispatchFetchPokeIndiAction(this.pokemonId);
-
     console.log(this.pokemonId, 'hurrah')
   }
 
