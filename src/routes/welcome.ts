@@ -4,7 +4,6 @@ import { autoinject } from 'aurelia-framework';
 import { fetchData } from '../actions/fetch';
 import { deleteCard } from '../actions/delete-card';
 
-
 @connectTo()
 @autoinject()
 export class Welcome {

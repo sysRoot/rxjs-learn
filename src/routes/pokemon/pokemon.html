@@ -1,0 +1,56 @@
+<template>
+    <section class="section">
+      <div class="container">
+        <h2 class="subtitle">${heading}</h2>
+        <form role="form" submit.delegate="dispatchFetchPokeAction()">
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div>
+          <ul>
+            <li repeat.for="pokemon of state.pokeList" pokemon.bind="pokemon" click.delegate="navToPokemon(pokemon)"><p>${pokemon.pokemon_species.name}</p></li>
+          </ul>
+          <!-- <div class="card" repeat.for="user of state.pokeData">
+              <header class="card-header">
+                  <p class="card-header-title">
+                    PLACEHOLDER FOR TITLE
+                  </p>
+                    <span class="icon" click.delegate="dispatchDeleteAction()">
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                </header>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img
+                      src="${user.picture.thumbnail}"
+                      alt="Placeholder image"
+                    />
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">Placeholder for info</p>
+                  <p class="subtitle is-6">
+                    Placeholder for something
+                  </p>
+                </div>
+              </div>
+  
+              <div class="content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+                nec iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
+                <a href="#">#responsive</a>
+                <br />
+                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </section>
+  </template>
+  

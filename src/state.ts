@@ -16,8 +16,12 @@ export interface User {
 export interface State {
   userData: Array<User>;
   burgerToggle: boolean;
+  pokeList: object[];
+  pokeData: object[];
 }
 export const initialState: State = {
   userData: [],
-  burgerToggle: false
+  burgerToggle: false,
+  pokeList: [],
+  pokeData: []
 }
